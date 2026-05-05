@@ -1,0 +1,173 @@
+
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Infográfico: cadeia de remarcação artificial de cotas — MUFFY FIDC, Cutter, Maranta, Fresia e Alamo</h2>
+<style>
+.cw{max-width:610px;margin:0 auto;padding:1.5rem 0 1rem}
+.badge{display:inline-block;font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:16px 20px}
+.fund-name{font-size:16px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
+.cnpj{font-size:12px;color:var(--color-text-tertiary);margin:0 0 12px}
+.mgrid{display:grid;gap:8px}
+.metric{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:8px 10px}
+.mlabel{font-size:11px;color:var(--color-text-secondary);margin:0 0 2px}
+.mvalue{font-size:14px;font-weight:500;color:var(--color-text-primary);margin:0}
+.msub{font-size:11px;color:var(--color-text-tertiary);margin:0}
+.mult{font-size:22px;font-weight:500;color:var(--color-text-danger);margin:0}
+.dnote{font-size:11px;color:var(--color-text-danger);margin:0}
+.conn{display:flex;flex-direction:column;align-items:center;padding:5px 0;gap:4px}
+.cline{width:1px;height:18px;background:var(--color-border-secondary)}
+.clabel{font-size:11px;color:var(--color-text-tertiary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:20px;padding:2px 12px}
+.sublabel{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;color:var(--color-text-tertiary);margin:0 0 4px}
+.mult-purple{font-size:13px;font-weight:500;color:#534AB7;margin:0}
+.b-red{background:#FCEBEB;color:#791F1F}
+.b-amber{background:#FAEEDA;color:#633806}
+.b-coral{background:#FAECE7;color:#712B13}
+.b-purple{background:#EEEDFE;color:#3C3489}
+.b-gray{background:#F1EFE8;color:#444441}
+.l-red{border-left:3px solid #E24B4A}
+.l-amber{border-left:3px solid #EF9F27}
+.l-coral{border-left:3px solid #D85A30}
+.l-purple{border-left:3px solid #7F77DD}
+.l-gray{border-left:3px solid #888780}
+@media(prefers-color-scheme:dark){
+.b-red{background:#501313;color:#F09595}
+.b-amber{background:#412402;color:#FAC775}
+.b-coral{background:#4A1B0C;color:#F0997B}
+.b-purple{background:#26215C;color:#CECBF6}
+.b-gray{background:#2C2C2A;color:#D3D1C7}
+.mult-purple{color:#AFA9EC}
+}
+</style>
+
+<div class="cw">
+
+  <div style="margin-bottom:20px">
+    <p style="font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin:0 0 4px">Investigação · Fundos de investimento</p>
+    <h2 style="font-size:18px;font-weight:500;margin:0 0 4px;color:var(--color-text-primary)">Cadeia de remarcação artificial</h2>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0">Como a inflação de cotas do MUFFY FIDC se propaga por três camadas de fundos</p>
+  </div>
+
+  <!-- BASE: MUFFY -->
+  <span class="badge b-red">Base da cadeia</span>
+  <div class="card l-red">
+    <p class="fund-name">MUFFY FIDC</p>
+    <p class="cnpj">CNPJ 43.740.863 · Direitos creditórios — educação / recuperação judicial</p>
+    <div class="mgrid" style="grid-template-columns:1fr 1fr">
+      <div class="metric">
+        <p class="mlabel">Preço de compra</p>
+        <p class="mvalue">R$ 34,96</p>
+        <p class="msub">por cota</p>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Marcação a mercado</p>
+        <p class="mvalue">R$ 237.380</p>
+        <p class="msub">por cota</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn">
+    <div class="cline"></div>
+    <span class="clabel">remarcação se propaga ↓</span>
+    <div class="cline"></div>
+  </div>
+
+  <!-- 1ª CAMADA: CUTTER -->
+  <span class="badge b-amber">1ª camada</span>
+  <div class="card l-amber">
+    <p class="fund-name">Cutter</p>
+    <p class="cnpj">CNPJ 41.124.588 · Posição: 190 cotas do MUFFY</p>
+    <div class="mgrid" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="metric">
+        <p class="mlabel">Jan/26</p>
+        <p class="mvalue">~R$ 370.000</p>
+        <p class="msub">por cota</p>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Fev/26</p>
+        <p class="mvalue">~R$ 228.000</p>
+        <p class="msub">por cota</p>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Mar/26</p>
+        <p class="mvalue" style="font-size:13px;color:var(--color-text-secondary)">Carteira reformulada</p>
+        <p class="msub">com ativos remarcados</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn">
+    <div class="cline"></div>
+    <span class="clabel">impacto direto ↓</span>
+    <div class="cline"></div>
+  </div>
+
+  <!-- 2ª CAMADA: MARANTA -->
+  <span class="badge b-coral">2ª camada</span>
+  <div class="card l-coral">
+    <p class="fund-name">Maranta</p>
+    <p class="cnpj">CNPJ 42.584.801 · Posição: 44,6 milhões de cotas do Cutter</p>
+    <div class="mgrid" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="metric">
+        <p class="mlabel">Jan/26</p>
+        <p class="mvalue">R$ 0,04</p>
+        <p class="msub">por cota</p>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Fev/26</p>
+        <p class="mvalue">R$ 1,84</p>
+        <p class="dnote">+46× sobre jan</p>
+      </div>
+      <div class="metric">
+        <p class="mlabel">Mar/26</p>
+        <p class="mvalue">R$ 12,66</p>
+        <p class="dnote">+6,9× s/ compras registradas</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="conn">
+    <div class="cline"></div>
+    <span class="clabel">efeito amplificado ↓</span>
+    <div class="cline"></div>
+  </div>
+
+  <!-- 3ª CAMADA: FRESIA + ALAMO -->
+  <span class="badge b-purple">3ª camada</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+
+    <div class="card l-purple">
+      <p class="fund-name" style="margin-bottom:12px">Fresia</p>
+
+      <p class="sublabel">Posição em Maranta</p>
+      <div class="metric" style="margin-bottom:8px">
+        <p class="mlabel">816.809 cotas</p>
+        <p class="mvalue" style="font-size:13px">R$ 6,06 → R$ 316,50</p>
+        <p class="mult-purple">+52×</p>
+      </div>
+
+      <p class="sublabel">Posição em Cutter</p>
+      <div class="metric">
+        <p class="mlabel">Volume de cotas</p>
+        <p class="mvalue" style="font-size:12px">2.529.430 → 13.016.585</p>
+        <p class="msub">sem compras registradas</p>
+      </div>
+    </div>
+
+    <div class="card l-gray">
+      <p class="fund-name" style="margin-bottom:4px">Alamo</p>
+      <p class="cnpj">Posições semelhantes ao Fresia</p>
+
+      <p class="sublabel">Jan/26 e Fev/26</p>
+      <div class="metric" style="margin-bottom:8px">
+        <p class="mvalue" style="font-size:13px;color:var(--color-text-secondary)">Estrutura idêntica ao Fresia</p>
+      </div>
+
+      <p class="sublabel">Mar/26</p>
+      <div class="metric" style="display:flex;align-items:center;gap:8px">
+        <span style="font-size:10px;font-weight:500;letter-spacing:.05em;background:var(--color-background-tertiary);color:var(--color-text-tertiary);border-radius:4px;padding:2px 7px;white-space:nowrap">CONFID</span>
+        <p class="msub" style="margin:0">Carteira sob sigilo regulatório</p>
+      </div>
+    </div>
+
+  </div>
+</div>
