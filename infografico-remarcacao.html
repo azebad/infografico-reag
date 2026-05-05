@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadeia de remarcação artificial — MUFFY · Cutter · Maranta · Fresia · Alamo</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #f5f4f0;
+    color: #1a1a18;
+    min-height: 100vh;
+    padding: 40px 24px 60px;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    margin-bottom: 36px;
+  }
+
+  .header .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 6px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: #5f5e5a;
+    line-height: 1.6;
+  }
+
+  /* CHAIN LAYOUT */
+  .chain {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .layer {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 52px;
+  }
+
+  .connector-line {
+    flex: 1;
+    width: 1px;
+    background: #b4b2a9;
+    max-height: 2px;
+    width: 100%;
+    height: 1px;
+  }
+
+  .arrow-svg {
+    flex-shrink: 0;
+  }
+
+  .conn-label {
+    font-size: 10px;
+    color: #888780;
+    text-align: center;
+    white-space: nowrap;
+    writing-mode: initial;
+    margin-top: 4px;
+  }
+
+  /* CARD */
+  .card {
+    background: #fff;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 12px;
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 10px;
+    border-bottom: 0.5px solid #e8e6de;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-bottom: 4px;
+  }
+
+  .badge-red    { background: #FCEBEB; color: #791F1F; }
+  .badge-amber  { background: #FAEEDA; color: #633806; }
+  .badge-coral  { background: #FAECE7; color: #712B13; }
+  .badge-purple { background: #EEEDFE; color: #3C3489; }
+  .badge-gray   { background: #F1EFE8; color: #444441; }
+
+  .accent-red    { border-top: 3px solid #E24B4A; border-radius: 0 0 12px 12px; border-top-left-radius: 0; border-top-right-radius: 0; }
+  .accent-amber  { border-top: 3px solid #EF9F27; }
+  .accent-coral  { border-top: 3px solid #D85A30; }
+  .accent-purple { border-top: 3px solid #7F77DD; }
+  .accent-gray   { border-top: 3px solid #888780; }
+
+  .fund-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #1a1a18;
+    line-height: 1.2;
+  }
+
+  .cnpj {
+    font-size: 11px;
+    color: #888780;
+  }
+
+  /* METRICS */
+  .metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+
+  .metric {
+    background: #f5f4f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    color: #888780;
+    margin-bottom: 2px;
+    font-weight: 500;
+    letter-spacing: .03em;
+  }
+
+  .metric-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a18;
+    line-height: 1.3;
+  }
+
+  .metric-sub {
+    font-size: 10px;
+    color: #888780;
+    margin-top: 1px;
+  }
+
+  .metric-delta {
+    font-size: 10px;
+    color: #A32D2D;
+    margin-top: 1px;
+    font-weight: 500;
+  }
+
+  .metric-delta-purple {
+    font-size: 10px;
+    color: #534AB7;
+    margin-top: 1px;
+    font-weight: 500;
+  }
+
+  .metric-note {
+    background: #f5f4f0;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .confid-badge {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .05em;
+    background: #e8e6de;
+    color: #5f5e5a;
+    border-radius: 4px;
+    padding: 2px 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .confid-text {
+    font-size: 10px;
+    color: #888780;
+    line-height: 1.3;
+  }
+
+  .sublabel {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 4px;
+    margin-top: 4px;
+  }
+
+  /* LAST COLUMN: Fresia + Alamo stacked */
+  .layer-last {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .layer-last .layer-label {
+    margin-bottom: 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 24px;
+    font-size: 11px;
+    color: #888780;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-dot {
+    width: 3px;
+    height: 3px;
+    background: #b4b2a9;
+    border-radius: 50%;
+  }
+
+  /* ARROW between columns */
+  .arrow-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    flex-shrink: 0;
+    padding-top: 48px;
+  }
+
+  /* Responsive */
+  @media (max-width: 860px) {
+    .chain {
+      flex-direction: column;
+      gap: 0;
+    }
+    .arrow-wrap {
+      width: auto;
+      padding-top: 0;
+      height: 32px;
+      transform: rotate(90deg);
+    }
+    .layer-last {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <p class="eyebrow">Investigação · Fundos de investimento · CVM</p>
+    <h1>Cadeia de remarcação artificial de cotas</h1>
+    <p>Como a inflação de cotas do MUFFY FIDC se propaga por três camadas de fundos — da base até Fresia e Alamo</p>
+  </div>
+
+  <div class="chain">
+
+    <!-- BASE: MUFFY -->
+    <div class="layer">
+      <div class="card accent-red">
+        <div class="card-header">
+          <span class="badge badge-red">Base da cadeia</span>
+          <div class="fund-name">MUFFY FIDC</div>
+          <div class="cnpj">CNPJ 43.740.863</div>
+          <div class="cnpj" style="margin-top:2px">Direitos creditórios · educação / recuperação judicial</div>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Preço de compra</div>
+            <div class="metric-value">R$ 34,96</div>
+            <div class="metric-sub">por cota</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Marcação a mercado</div>
+            <div class="metric-value">R$ 237.380</div>
+            <div class="metric-sub">por cota</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW 1 -->
+    <div class="arrow-wrap">
+      <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="28" y2="8" stroke="#b4b2a9" stroke-width="1"/>
+        <path d="M26 4L32 8L26 12" stroke="#b4b2a9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- 1ª CAMADA: CUTTER -->
+    <div class="layer">
+      <div class="card accent-amber">
+        <div class="card-header">
+          <span class="badge badge-amber">1ª camada</span>
+          <div class="fund-name">Cutter</div>
+          <div class="cnpj">CNPJ 41.124.588</div>
+          <div class="cnpj" style="margin-top:2px">190 cotas do MUFFY</div>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Jan/26</div>
+            <div class="metric-value">~R$ 370.000</div>
+            <div class="metric-sub">por cota</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Fev/26</div>
+            <div class="metric-value">~R$ 228.000</div>
+            <div class="metric-sub">por cota</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Mar/26</div>
+            <div class="metric-value" style="font-size:12px;color:#5f5e5a">Carteira reformulada</div>
+            <div class="metric-sub">com ativos remarcados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW 2 -->
+    <div class="arrow-wrap">
+      <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="28" y2="8" stroke="#b4b2a9" stroke-width="1"/>
+        <path d="M26 4L32 8L26 12" stroke="#b4b2a9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- 2ª CAMADA: MARANTA -->
+    <div class="layer">
+      <div class="card accent-coral">
+        <div class="card-header">
+          <span class="badge badge-coral">2ª camada</span>
+          <div class="fund-name">Maranta</div>
+          <div class="cnpj">CNPJ 42.584.801</div>
+          <div class="cnpj" style="margin-top:2px">44,6 milhões de cotas do Cutter</div>
+        </div>
+        <div class="metrics">
+          <div class="metric">
+            <div class="metric-label">Jan/26</div>
+            <div class="metric-value">R$ 0,04</div>
+            <div class="metric-sub">por cota</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Fev/26</div>
+            <div class="metric-value">R$ 1,84</div>
+            <div class="metric-delta">+46× sobre jan</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Mar/26</div>
+            <div class="metric-value">R$ 12,66</div>
+            <div class="metric-delta">+6,9× s/ compras registradas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARROW 3 -->
+    <div class="arrow-wrap">
+      <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="28" y2="8" stroke="#b4b2a9" stroke-width="1"/>
+        <path d="M26 4L32 8L26 12" stroke="#b4b2a9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+
+    <!-- 3ª CAMADA: FRESIA + ALAMO -->
+    <div class="layer-last">
+      <span class="badge badge-purple" style="width:fit-content;margin-bottom:8px">3ª camada</span>
+
+      <!-- FRESIA -->
+      <div class="card accent-purple">
+        <div class="card-header">
+          <div class="fund-name">Fresia</div>
+        </div>
+        <div class="metrics">
+          <div class="sublabel">Posição em Maranta</div>
+          <div class="metric">
+            <div class="metric-label">816.809 cotas</div>
+            <div class="metric-value">R$ 6,06 → R$ 316,50</div>
+            <div class="metric-delta-purple">+52×</div>
+          </div>
+          <div class="sublabel">Posição em Cutter</div>
+          <div class="metric">
+            <div class="metric-label">Volume de cotas</div>
+            <div class="metric-value" style="font-size:12px">2.529.430 → 13.016.585</div>
+            <div class="metric-sub">sem compras registradas</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALAMO -->
+      <div class="card accent-gray">
+        <div class="card-header">
+          <div class="fund-name">Alamo</div>
+          <div class="cnpj">Posições semelhantes ao Fresia</div>
+        </div>
+        <div class="metrics">
+          <div class="sublabel">Jan/26 e Fev/26</div>
+          <div class="metric">
+            <div class="metric-value" style="font-size:12px;color:#5f5e5a">Estrutura idêntica ao Fresia</div>
+          </div>
+          <div class="sublabel">Mar/26</div>
+          <div class="metric-note">
+            <span class="confid-badge">CONFID</span>
+            <span class="confid-text">Carteira sob sigilo regulatório</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>Fonte: CVM</span>
+    <span class="footer-dot"></span>
+    <span>Dados: informes mensais de composição de carteira</span>
+    <span class="footer-dot"></span>
+    <span>Análise: Money Times</span>
+  </div>
+
+</div>
+</body>
+</html>
